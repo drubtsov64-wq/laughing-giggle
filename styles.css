@@ -1972,6 +1972,15 @@ main, header, footer { position: relative; z-index: 1; }
   padding: .55rem 1.2rem;
 }
 
+.contact__messenger-phone {
+  font-size: 1.25rem;
+  font-weight: var(--fw-semi);
+  color: var(--clr-accent);
+  text-decoration: none;
+  white-space: nowrap;
+}
+.contact__messenger-phone:hover { text-decoration: underline; }
+
 
 /* ============================================================
    PROJ-BLOCK — блоки на страницах кейсов
