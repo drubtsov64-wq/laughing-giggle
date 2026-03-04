@@ -1605,7 +1605,7 @@ body::before {
   gap: .5rem;
   justify-content: space-between;
   font-size: .82rem;
-  color: rgba(255,255,255,.4);
+  color: rgba(255,255,255,.6);
 }
 
 
