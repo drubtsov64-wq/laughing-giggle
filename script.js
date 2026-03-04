@@ -464,6 +464,24 @@ document.querySelectorAll('a[href]').forEach(link => {
 
 
 /* ============================================================
+   TEMP: TEST BUTTON
+   ============================================================ */
+const testBtn = document.getElementById('testFn');
+if (testBtn) testBtn.addEventListener('click', async () => {
+  try{
+    const res = await fetch('/.netlify/functions/contact', {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({name:'t', contact:'t', message:'t', hp:''})
+    });
+    alert(await res.text());
+  }catch(e){
+    alert(String(e));
+  }
+});
+
+
+/* ============================================================
    14. TILT CARDS (Apple-like 3D hover)
    ============================================================ */
 (function initTiltCards() {
