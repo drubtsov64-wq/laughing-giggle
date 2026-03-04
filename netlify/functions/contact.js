@@ -114,11 +114,18 @@ exports.handler = async (event) => {
     return json(500, { ok: false, error: 'Server is not configured' });
   }
 
+  const esc = s => s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+
+  const isPhone = /^[\d\s\+\-\(\)]{7,}$/.test(contact);
+  const contactFormatted = isPhone
+    ? `<a href="tel:${contact.replace(/\s/g,'')}">${esc(contact)}</a>`
+    : esc(contact);
+
   const text =
     `📩 Новое сообщение с сайта\n\n` +
-    `👤 Имя: ${name}\n` +
-    `📞 Контакт: ${contact}\n` +
-    `💬 Сообщение: ${message}`;
+    `👤 Имя: ${esc(name)}\n` +
+    `📞 Контакт: ${contactFormatted}\n` +
+    `💬 Сообщение: ${esc(message)}`;
 
   try {
     const res = await fetch(`${TG_API}/bot${botToken}/sendMessage`, {
@@ -127,7 +134,7 @@ exports.handler = async (event) => {
       body: JSON.stringify({
         chat_id: chatId,
         text,
-        // disable_web_page_preview: true, // можно включить при желании
+        parse_mode: 'HTML',
       }),
     });
 
