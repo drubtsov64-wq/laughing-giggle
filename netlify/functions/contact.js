@@ -114,18 +114,22 @@ exports.handler = async (event) => {
     return json(500, { ok: false, error: 'Server is not configured' });
   }
 
-  const esc = s => s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-
-  const isPhone = /^[\d\s\+\-\(\)]{7,}$/.test(contact);
-  const contactFormatted = isPhone
-    ? `<a href="tel:${contact.replace(/\s/g,'')}">${esc(contact)}</a>`
-    : esc(contact);
+  // Нормализуем телефон: если похоже на российский без +, добавляем +7
+  const normalizeContact = s => {
+    const digits = s.replace(/\D/g, '');
+    if (/^[\d\s\+\-\(\)]{7,}$/.test(s)) {
+      if (digits.length === 11 && digits.startsWith('8')) return '+7' + digits.slice(1);
+      if (digits.length === 11 && digits.startsWith('7')) return '+' + digits;
+      if (digits.length === 10) return '+7' + digits;
+    }
+    return s;
+  };
 
   const text =
     `📩 Новое сообщение с сайта\n\n` +
-    `👤 Имя: ${esc(name)}\n` +
-    `📞 Контакт: ${contactFormatted}\n` +
-    `💬 Сообщение: ${esc(message)}`;
+    `👤 Имя: ${name}\n` +
+    `📞 Контакт: ${normalizeContact(contact)}\n` +
+    `💬 Сообщение: ${message}`;
 
   try {
     const res = await fetch(`${TG_API}/bot${botToken}/sendMessage`, {
@@ -134,7 +138,6 @@ exports.handler = async (event) => {
       body: JSON.stringify({
         chat_id: chatId,
         text,
-        parse_mode: 'HTML',
       }),
     });
 
