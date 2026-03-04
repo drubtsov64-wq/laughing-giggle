@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Лендинг с управлением ценами через Telegram-бот — проект Дмитрия" />
+  <title>Сайт с управлением ценами — Дмитрий</title>
+  <link rel="stylesheet" href="../styles.css" />
+  <style>
+    .proj-nav {
+      position: sticky;
+      top: 0;
+      z-index: 200;
+      background: rgba(247, 248, 255, .9);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--clr-border);
+      padding: .85rem 0;
+    }
+    .proj-nav__inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    .proj-nav__back {
+      display: inline-flex;
+      align-items: center;
+      gap: .45rem;
+      font-size: .9rem;
+      font-weight: var(--fw-medium);
+      color: var(--clr-muted);
+      transition: color var(--t-fast);
+    }
+    .proj-nav__back:hover { color: var(--clr-accent); }
+    .proj-nav__back svg { flex-shrink: 0; }
+
+    .proj-hero {
+      padding-block: clamp(3rem, 7vw, 5.5rem);
+      text-align: center;
+    }
+    .proj-hero__tag {
+      display: inline-block;
+      padding: .3em .9em;
+      border-radius: var(--r-pill);
+      background: var(--clr-accent-bg);
+      color: var(--clr-accent);
+      font-size: .8rem;
+      font-weight: var(--fw-semi);
+      letter-spacing: .04em;
+      margin-bottom: 1.25rem;
+    }
+    .proj-hero__title {
+      max-width: 18ch;
+      margin-inline: auto;
+      margin-bottom: 1rem;
+    }
+    .proj-hero__desc {
+      max-width: 52ch;
+      margin-inline: auto;
+      font-size: clamp(.95rem, 2vw, 1.1rem);
+      color: var(--clr-muted);
+    }
+
+    .proj-img {
+      background: var(--clr-surface-alt);
+      padding-block: clamp(1.5rem, 4vw, 3rem);
+    }
+    .proj-img__wrap {
+      border-radius: var(--r-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+      min-height: 300px;
+      max-height: 520px;
+      background: var(--clr-border);
+    }
+    .proj-img__wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .proj-content {
+      padding-block: clamp(3rem, 6vw, 5rem);
+    }
+    .proj-content__grid {
+      display: grid;
+      gap: 2rem;
+    }
+    .proj-block {
+      background: var(--clr-surface);
+      border: 1px solid var(--clr-border);
+      border-radius: var(--r-md);
+      padding: 1.75rem;
+    }
+    .proj-block__label {
+      font-size: .72rem;
+      font-weight: var(--fw-bold);
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: var(--clr-accent);
+      margin-bottom: .6rem;
+    }
+    .proj-block__text {
+      font-size: .95rem;
+      color: var(--clr-text-2);
+      max-width: none;
+    }
+    .proj-block__list {
+      display: flex;
+      flex-direction: column;
+      gap: .4rem;
+    }
+    .proj-block__list li {
+      font-size: .9rem;
+      color: var(--clr-text-2);
+      padding-left: 1.1em;
+      position: relative;
+    }
+    .proj-block__list li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: var(--clr-accent);
+      font-weight: var(--fw-bold);
+    }
+    .proj-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .5rem;
+    }
+
+    .proj-cta {
+      background: var(--clr-surface-alt);
+      padding-block: clamp(3rem, 6vw, 4.5rem);
+      text-align: center;
+    }
+    .proj-cta h2 { margin-bottom: .75rem; }
+    .proj-cta p  { color: var(--clr-muted); margin-bottom: 1.75rem; max-width: 44ch; margin-inline: auto; }
+    .proj-cta__actions { display: flex; flex-wrap: wrap; gap: .85rem; justify-content: center; }
+
+    .proj-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
+      padding: .3em .8em;
+      border-radius: var(--r-pill);
+      background: rgba(245, 158, 11, .1);
+      color: #B45309;
+      font-size: .78rem;
+      font-weight: var(--fw-medium);
+    }
+    .proj-badge--ok {
+      background: rgba(16, 185, 129, .1);
+      color: #047857;
+    }
+
+    .proj-hero__chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .5rem;
+      justify-content: center;
+      margin-top: 1.25rem;
+    }
+
+    @media (min-width: 768px) {
+      .proj-content__grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="proj-nav" aria-label="Навигация по странице">
+    <div class="proj-nav__inner container">
+      <a href="../index.html" class="proj-nav__back" aria-label="Вернуться к портфолио">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+             stroke-linecap="round" stroke-linejoin="round" width="16" height="16">
+          <path d="M19 12H5M12 5l-7 7 7 7"/>
+        </svg>
+        К портфолио
+      </a>
+      <a href="../index.html#contact" class="btn btn--primary" style="font-size:.85rem;padding:.5em 1.1em;">
+        Написать мне
+      </a>
+    </div>
+  </nav>
+
+  <main>
+
+    <section class="proj-hero">
+      <div class="container">
+        <span class="proj-hero__tag">Сайт + Telegram-бот</span>
+        <h1 class="proj-hero__title">Сайт с управлением ценами через Telegram-бот</h1>
+        <p class="proj-hero__desc">
+          Лендинг, где цены можно менять через Telegram без правки кода.
+        </p>
+        <div class="proj-hero__chips" aria-label="Состав работы">
+          <span class="tag">Сайт</span>
+          <span class="tag">Telegram-бот</span>
+          <span class="tag">Адаптив</span>
+          <span class="tag">Автоматизация</span>
+          <span class="tag">Python</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="proj-img">
+      <div class="container">
+        <div class="proj-img__wrap">
+          <img src="../assets/projects/price-bot-site.jpg"
+               alt="Скриншот сайта с управлением ценами"
+               loading="eager" />
+        </div>
+      </div>
+    </section>
+
+    <section class="proj-content">
+      <div class="container">
+        <div class="proj-content__grid">
+
+          <div class="proj-block">
+            <p class="proj-block__label">Задача</p>
+            <p class="proj-block__text">
+              Сделать простой сайт и удобный способ обновлять цены без доступа к исходникам.
+            </p>
+          </div>
+
+          <div class="proj-block">
+            <p class="proj-block__label">Решение</p>
+            <p class="proj-block__text">
+              Сайт + Telegram-бот, через которого обновляются цены/данные на сайте.
+            </p>
+          </div>
+
+          <div class="proj-block">
+            <p class="proj-block__label">Что сделано</p>
+            <ul class="proj-block__list">
+              <li>Адаптивная вёрстка</li>
+              <li>Структура блоков под услуги</li>
+              <li>Форма заявки</li>
+              <li>Бот для изменения цен</li>
+              <li>Обновление данных без админки</li>
+            </ul>
+          </div>
+
+          <div class="proj-block">
+            <p class="proj-block__label">Статус</p>
+            <span class="proj-badge proj-badge--ok">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                   width="13" height="13" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+              Проект завершён (поддержка по необходимости)
+            </span>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <section class="proj-cta">
+      <div class="container">
+        <h2>Нужно похожее решение?</h2>
+        <p>Расскажите задачу — разберёмся вместе.</p>
+        <div class="proj-cta__actions">
+          <a href="../index.html" class="btn btn--outline">Назад на главную</a>
+          <a href="https://naira-fish-voskresensk.ru/" class="btn btn--primary"
+             target="_blank" rel="noopener noreferrer">Открыть сайт</a>
+          <a href="https://t.me/naira_fish_bot" class="btn btn--primary"
+             target="_blank" rel="noopener noreferrer">Открыть бота</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer" role="contentinfo">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <a href="../index.html" class="nav__logo" aria-label="На главную">ДР</a>
+        <p>Сайты, боты, автоматизация и AI для малого бизнеса.</p>
+      </div>
+      <nav class="footer__nav" aria-label="Навигация в футере">
+        <ul role="list">
+          <li><a href="../index.html#about">Обо мне</a></li>
+          <li><a href="../index.html#services">Услуги</a></li>
+          <li><a href="../index.html#portfolio">Кейсы</a></li>
+          <li><a href="../index.html#contact">Контакт</a></li>
+        </ul>
+      </nav>
+      <address class="footer__contact">
+        <a href="tel:+79771573476">+7 (977) 157-34-76</a>
+        <a href="mailto:dm.rubtsov@gmail.com">dm.rubtsov@gmail.com</a>
+      </address>
+    </div>
+    <div class="footer__bottom container">
+      <p>&copy; <span id="year"></span> Дмитрий Рубцов.</p>
+      <p>Сделано руками, без фреймворков — как я люблю.</p>
+    </div>
+  </footer>
+
+  <script src="../script.js"></script>
+</body>
+</html>

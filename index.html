@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Создаю адаптивные лендинги и Telegram-боты для задач бизнеса. Ясно, по шагам, с доведением до результата." />
+  <meta property="og:title"       content="Дмитрий Рубцов — сайты и боты" />
+  <meta property="og:description" content="Адаптивные лендинги, Telegram-боты, прозрачный процесс и ясная коммуникация." />
+  <meta property="og:type"        content="website" />
+  <title>Дмитрий Рубцов — Лендинги и Telegram-боты</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <div class="cursor-glow" aria-hidden="true"></div>
+
+  <!-- ============================================================
+       HEADER
+       ============================================================ -->
+  <header class="header" id="header">
+    <nav class="nav container" aria-label="Главное меню">
+
+      <a href="#hero" class="nav__logo" aria-label="На главную">ДР</a>
+
+      <button class="nav__burger" id="navBurger"
+              aria-label="Открыть меню" aria-expanded="false"
+              aria-controls="navList">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <ul class="nav__list" id="navList" role="list">
+        <li><a href="#about"   class="nav__link">Обо мне</a></li>
+        <li><a href="#services" class="nav__link">Услуги</a></li>
+        <li><a href="#process"  class="nav__link">Процесс</a></li>
+        <li><a href="#faq"      class="nav__link">FAQ</a></li>
+        <li><a href="#contact"  class="nav__link nav__link--cta">Обсудить проект</a></li>
+      </ul>
+
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- ============================================================
+         HERO
+         ============================================================ -->
+    <section class="hero" id="hero" aria-labelledby="heroHeading">
+      <div class="hero__content container">
+
+        <p class="hero__greeting">Привет, я Дмитрий Рубцов</p>
+
+        <h1 class="hero__name" id="heroHeading">
+          Создаю аккуратные лендинги и Telegram-боты под задачи бизнеса
+        </h1>
+
+        <p class="hero__desc">
+          Понимаю цель, предлагаю простое решение и довожу проект до рабочего результата.
+        </p>
+
+        <div class="hero__actions">
+          <a href="#contact"   class="btn btn--primary">Написать мне</a>
+          <a href="#projects" class="btn btn--outline">Посмотреть работы</a>
+        </div>
+
+        <ul class="hero__badges" role="list" aria-label="Принципы работы">
+          <li class="tag">✓ Быстро и по делу</li>
+          <li class="tag">✓ Понятный процесс</li>
+          <li class="tag">✓ Поддержка после запуска</li>
+        </ul>
+
+      </div>
+
+      <a href="#about" class="hero__scroll-hint" aria-label="Перейти к разделу «Обо мне»">
+        <span aria-hidden="true"></span>
+      </a>
+    </section>
+
+    <!-- ============================================================
+         ABOUT
+         ============================================================ -->
+    <section class="section about reveal" id="about" aria-labelledby="aboutHeading">
+      <div class="container">
+        <h2 class="section__title" id="aboutHeading">Обо мне</h2>
+
+        <div class="about__grid">
+
+          <figure class="about__photo">
+            <img src="assets/photo.jpg" alt="Дмитрий Рубцов — разработчик"
+                 width="320" height="320" loading="lazy"
+                 onerror="this.style.display='none'" />
+            <div class="about__photo-placeholder" aria-hidden="true" style="display:none">ДР</div>
+          </figure>
+
+          <div class="about__text">
+            <h3 class="about__subtitle">Меня зовут Дмитрий — занимаюсь созданием сайтов и автоматизацией</h3>
+
+            <p>Подхожу к задачам внимательно, объясняю простым языком, работаю спокойно и по шагам.
+              Сейчас активно развиваюсь и собираю портфолио, поэтому особенно внимательно
+              подхожу к каждому проекту.</p>
+
+            <ul class="about__skills" role="list" aria-label="Технологии">
+              <li class="tag">Python</li>
+              <li class="tag">JavaScript</li>
+              <li class="tag">Telegram Bot API</li>
+              <li class="tag">n8n / Make</li>
+              <li class="tag">GPT API</li>
+              <li class="tag">HTML / CSS</li>
+              <li class="tag">Figma</li>
+              <li class="tag">Node.js</li>
+            </ul>
+
+            <a href="assets/resume.pdf" class="btn btn--primary"
+               target="_blank" rel="noopener noreferrer"
+               aria-label="Скачать резюме в формате PDF">
+              Скачать резюме (PDF)
+            </a>
+            <small style="display:block;margin-top:.5rem;color:#888;font-size:.75rem;">Обновлено: 2026</small>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         SERVICES
+         ============================================================ -->
+    <section class="section services reveal" id="services" aria-labelledby="servicesHeading">
+      <div class="container">
+        <h2 class="section__title" id="servicesHeading">Что я делаю</h2>
+        <p class="section__subtitle">Три направления — под конкретные задачи</p>
+
+        <ul class="services__grid" role="list">
+
+          <li class="service-card tilt-card">
+            <div class="service-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                   stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="3" width="20" height="14" rx="2"/>
+                <path d="M8 21h8M12 17v4"/>
+              </svg>
+            </div>
+            <h3 class="service-card__title">Лендинги и простые сайты</h3>
+            <p class="service-card__desc">
+              Чёткая структура, аккуратный дизайн, адаптивность под любое устройство.
+            </p>
+            <ul class="service-card__list" role="list">
+              <li>Лендинги, портфолио, визитки</li>
+              <li>Адаптивность под все устройства</li>
+              <li>Аккуратная вёрстка без лишнего</li>
+            </ul>
+          </li>
+
+          <li class="service-card tilt-card">
+            <div class="service-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                   stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+              </svg>
+            </div>
+            <h3 class="service-card__title">Telegram-боты</h3>
+            <p class="service-card__desc">
+              Запись, заявки и простые сценарии автоматизации прямо в мессенджере.
+            </p>
+            <ul class="service-card__list" role="list">
+              <li>Приём заявок и запись</li>
+              <li>Простые сценарии автоматизации</li>
+              <li>Уведомления и напоминания</li>
+            </ul>
+          </li>
+
+          <li class="service-card tilt-card">
+            <div class="service-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                   stroke-linecap="round" stroke-linejoin="round">
+                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+              </svg>
+            </div>
+            <h3 class="service-card__title">Настройка процессов</h3>
+            <p class="service-card__desc">
+              Чтобы заявки не терялись и работа стала понятнее для всей команды.
+            </p>
+            <ul class="service-card__list" role="list">
+              <li>Сбор заявок из разных каналов</li>
+              <li>Связка с мессенджерами и CRM</li>
+              <li>Прозрачность и порядок в процессах</li>
+            </ul>
+          </li>
+
+          <li class="service-card tilt-card">
+            <div class="service-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                   stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2a10 10 0 1 0 0 20A10 10 0 0 0 12 2z"/>
+                <path d="M12 8v4l3 3"/>
+                <circle cx="12" cy="12" r="3" fill="currentColor" stroke="none" opacity=".2"/>
+              </svg>
+            </div>
+            <h3 class="service-card__title">AI-инструменты</h3>
+            <p class="service-card__desc">
+              Подключаю GPT там, где это реально помогает, а не просто выглядит современно.
+            </p>
+            <ul class="service-card__list" role="list">
+              <li>AI-чат на сайте и в боте</li>
+              <li>Анализ отзывов и обращений</li>
+              <li>Авто-ответы и генерация текстов</li>
+            </ul>
+          </li>
+
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         PROCESS
+         ============================================================ -->
+    <section class="section process reveal" id="process" aria-labelledby="processHeading">
+      <div class="container">
+        <h2 class="section__title" id="processHeading">Как мы работаем</h2>
+        <p class="section__subtitle">Без сюрпризов — вы знаете, что происходит на каждом шаге</p>
+
+        <ol class="process__list" role="list">
+
+          <li class="process-step">
+            <div class="process-step__num" aria-hidden="true">01</div>
+            <div class="process-step__body">
+              <h3 class="process-step__title">Созваниваемся</h3>
+              <p class="process-step__desc">
+                Вы рассказываете задачу — я задаю вопросы. Никакого брифа на 47 пунктов.
+              </p>
+            </div>
+          </li>
+
+          <li class="process-step">
+            <div class="process-step__num" aria-hidden="true">02</div>
+            <div class="process-step__body">
+              <h3 class="process-step__title">Договариваемся</h3>
+              <p class="process-step__desc">
+                Предлагаю конкретное решение с ценой и сроком — письменно, без «ну, примерно».
+              </p>
+            </div>
+          </li>
+
+          <li class="process-step">
+            <div class="process-step__num" aria-hidden="true">03</div>
+            <div class="process-step__body">
+              <h3 class="process-step__title">Делаем</h3>
+              <p class="process-step__desc">
+                Разрабатываю, показываю промежуточный результат. Никаких сюрпризов в конце.
+              </p>
+            </div>
+          </li>
+
+          <li class="process-step">
+            <div class="process-step__num" aria-hidden="true">04</div>
+            <div class="process-step__body">
+              <h3 class="process-step__title">Запускаем</h3>
+              <p class="process-step__desc">
+                Деплоим вместе, всё проверяем. 30 дней закрываю баги бесплатно — и не пропадаю.
+              </p>
+            </div>
+          </li>
+
+        </ol>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         FAQ
+         ============================================================ -->
+    <section class="section faq reveal" id="faq" aria-labelledby="faqHeading">
+      <div class="container">
+        <h2 class="section__title" id="faqHeading">Частые вопросы</h2>
+        <p class="section__subtitle">То, что обычно спрашивают перед первым сообщением</p>
+
+        <div class="faq__list" role="list">
+
+          <details class="faq-item" role="listitem">
+            <summary class="faq-item__question">
+              Сколько стоит сайт / бот / автоматизация?
+              <span class="faq-item__icon" aria-hidden="true"></span>
+            </summary>
+            <div class="faq-item__answer">
+              <p>Зависит от задачи. Лендинг — от 10 000 ₽, Telegram-бот — от 10 000 ₽,
+                 автоматизация — от 20 000 ₽. Точную цифру называю после короткого разговора,
+                 не «на глаз» по переписке.</p>
+            </div>
+          </details>
+
+          <details class="faq-item" role="listitem">
+            <summary class="faq-item__question">
+              Как быстро вы сделаете проект?
+              <span class="faq-item__icon" aria-hidden="true"></span>
+            </summary>
+            <div class="faq-item__answer">
+              <p>Лендинг — от 7 рабочих дней, бот — 5–14 дней, автоматизация — от 2 недель.
+                 Сроки фиксирую письменно и держу их — без «оказалось сложнее».</p>
+            </div>
+          </details>
+
+          <details class="faq-item" role="listitem">
+            <summary class="faq-item__question">
+              Что будет после запуска?
+              <span class="faq-item__icon" aria-hidden="true"></span>
+            </summary>
+            <div class="faq-item__answer">
+              <p>30 дней правлю баги бесплатно. Дальше — разовые задачи или ежемесячный
+                 пакет часов. Не бросаю клиентов с «ну теперь сами».</p>
+            </div>
+          </details>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         WHY — Почему со мной спокойно работать
+         ============================================================ -->
+    <section class="section why reveal" id="why" aria-labelledby="whyHeading">
+      <div class="container">
+        <h2 class="section__title" id="whyHeading">Почему со мной спокойно работать</h2>
+
+        <ul class="why__grid" role="list">
+
+          <li class="why-card tilt-card">
+            <div class="why-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                   stroke-linecap="round" stroke-linejoin="round">
+                <path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/>
+                <rect x="9" y="3" width="6" height="4" rx="2"/>
+                <path d="M9 12h6M9 16h4"/>
+              </svg>
+            </div>
+            <h3 class="why-card__title">Быстро отвечаю и остаюсь на связи</h3>
+            <p class="why-card__desc">Каждый этап обсуждаем заранее, без сюрпризов.</p>
+          </li>
+
+          <li class="why-card tilt-card">
+            <div class="why-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                   stroke-linecap="round" stroke-linejoin="round">
+                <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+                <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+              </svg>
+            </div>
+            <h3 class="why-card__title">Понятный этапный процесс работы</h3>
+            <p class="why-card__desc">Отвечаю, объясняю и не пропадаю после сдачи.</p>
+          </li>
+
+          <li class="why-card tilt-card">
+            <div class="why-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                   stroke-linecap="round" stroke-linejoin="round">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                <circle cx="12" cy="12" r="3"/>
+              </svg>
+            </div>
+            <h3 class="why-card__title">Спокойная и конструктивная коммуникация</h3>
+            <p class="why-card__desc">Объясняю так, чтобы всё было понятно без IT-жаргона.</p>
+          </li>
+
+          <li class="why-card tilt-card">
+            <div class="why-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                   stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"/>
+                <path d="m21 21-4.35-4.35"/>
+              </svg>
+            </div>
+            <h3 class="why-card__title">Довожу проект до финального результата</h3>
+            <p class="why-card__desc">Важно, чтобы всё работало корректно и выглядело чисто.</p>
+          </li>
+
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         WHO — Кому я подойду
+         ============================================================ -->
+    <section class="section who reveal" id="who" aria-labelledby="whoHeading">
+      <div class="container">
+        <h2 class="section__title" id="whoHeading">Кому я подойду</h2>
+
+        <ul class="who__list" role="list">
+
+          <li class="who-item">
+            <span class="who-item__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                   stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+            </span>
+            <p class="who-item__text">Если нужен аккуратный лендинг без лишней сложности.</p>
+          </li>
+
+          <li class="who-item">
+            <span class="who-item__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                   stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+            </span>
+            <p class="who-item__text">Если хотите простую автоматизацию — без избыточных решений.</p>
+          </li>
+
+          <li class="who-item">
+            <span class="who-item__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                   stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+            </span>
+            <p class="who-item__text">Если важно, чтобы исполнитель был на связи и отвечал понятно.</p>
+          </li>
+
+          <li class="who-item">
+            <span class="who-item__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                   stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+            </span>
+            <p class="who-item__text">Если цените спокойный рабочий процесс без хаоса.</p>
+          </li>
+
+        </ul>
+      </div>
+    </section>
+
+
+    <!-- ============================================================
+         PROJECTS — Проекты
+         ============================================================ -->
+    <section class="section projects reveal" id="projects" aria-labelledby="projectsHeading">
+      <div class="container">
+        <h2 class="section__title" id="projectsHeading">Проекты</h2>
+        <p class="section__subtitle">Несколько примеров реализованных решений</p>
+
+        <div class="projects__grid">
+
+          <article class="project-card tilt-card">
+            <div class="project-card__img">
+              <img src="assets/projects/price-bot-site.jpg"
+                   alt="Сайт с управлением ценами через Telegram-бот"
+                   loading="lazy" onerror="this.closest('.project-card__img').style.display='none'" />
+            </div>
+            <div class="project-card__body">
+              <h3 class="project-card__title">Сайт с управлением ценами через Telegram-бот</h3>
+              <p class="project-card__desc">Лендинг, где цены можно менять через Telegram без правки кода.</p>
+            </div>
+            <footer class="project-card__footer">
+              <a href="projects/price-bot-site.html" class="btn btn--sm btn--outline">Подробнее</a>
+              <a href="https://naira-fish-voskresensk.ru/" class="btn btn--sm btn--primary"
+                 target="_blank" rel="noopener noreferrer">Открыть сайт</a>
+            </footer>
+          </article>
+
+          <article class="project-card tilt-card">
+            <div class="project-card__img">
+              <img src="assets/projects/tg-bot-tz.jpg"
+                   alt="Telegram-бот по техническому заданию"
+                   loading="lazy" onerror="this.closest('.project-card__img').style.display='none'" />
+            </div>
+            <div class="project-card__body">
+              <h3 class="project-card__title">Telegram-бот по техническому заданию</h3>
+              <p class="project-card__desc">Бот с меню и логикой сценариев, реализованный по готовому ТЗ.</p>
+            </div>
+            <footer class="project-card__footer">
+              <a href="projects/tg-bot-tz.html" class="btn btn--sm btn--outline">Подробнее</a>
+              <a href="https://t.me/HvoyaDishi_bot" class="btn btn--sm btn--primary"
+                 target="_blank" rel="noopener noreferrer">Открыть бота</a>
+            </footer>
+          </article>
+
+          <article class="project-card tilt-card">
+            <div class="project-card__img">
+              <img src="assets/projects/wife-site.jpg"
+                   alt="Сайт-витрина для частного проекта"
+                   loading="lazy" onerror="this.closest('.project-card__img').style.display='none'" />
+            </div>
+            <div class="project-card__body">
+              <h3 class="project-card__title">Сайт-витрина для частного проекта</h3>
+              <p class="project-card__desc">Адаптивный сайт с аккуратной структурой, развивается постепенно.</p>
+            </div>
+            <footer class="project-card__footer">
+              <a href="projects/wife-site.html" class="btn btn--sm btn--outline">Подробнее</a>
+              <a href="https://vocal-macaron-20d105.netlify.app/" class="btn btn--sm btn--primary"
+                 target="_blank" rel="noopener noreferrer">Открыть сайт</a>
+            </footer>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         CONTACT
+         ============================================================ -->
+    <section class="section contact reveal" id="contact" aria-labelledby="contactHeading">
+      <div class="container contact__inner">
+
+        <h2 class="section__title" id="contactHeading">Обсудим вашу задачу?</h2>
+        <p class="contact__subtitle">
+          Напишите — и в течение нескольких часов у вас будет понимание,
+          что делать и сколько это стоит.
+        </p>
+
+        <!-- Мессенджер CTA -->
+        <div class="contact__messenger">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"
+               aria-hidden="true" class="contact__messenger-icon">
+            <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+          </svg>
+          <div class="contact__messenger-body">
+            <p class="contact__messenger-title">Быстрее всего — написать напрямую</p>
+            <p class="contact__messenger-text">
+              Telegram или WhatsApp:
+              <strong>+7&nbsp;(977)&nbsp;157‑34‑76</strong>
+            </p>
+            <div class="contact__messenger-btns">
+              <a href="https://t.me/samorabotaD_bot" class="btn btn--primary btn--icon"
+                 target="_blank" rel="noopener noreferrer">
+                <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18" aria-hidden="true"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+                Написать в Telegram
+              </a>
+              <a href="https://wa.me/79771573476" class="btn btn--whatsapp btn--icon"
+                 target="_blank" rel="noopener noreferrer">
+                <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+                Написать в WhatsApp
+              </a>
+              <a href="mailto:wwwsamo@yandex.ru" class="contact__email-link">wwwsamo@yandex.ru</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Форма -->
+        <form class="contact__form" id="contactForm" novalidate
+              aria-label="Форма обратной связи">
+
+          <div style="position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden;" aria-hidden="true">
+  <label>Не заполняйте: <input type="text" name="hp" tabindex="-1" autocomplete="off"></label>
+</div>
+
+          <div class="form-group">
+            <label for="contactName">Имя <abbr title="обязательное поле">*</abbr></label>
+            <input type="text" id="contactName" name="name"
+                   placeholder="Как вас зовут?"
+                   autocomplete="name" required />
+            <span class="form-error" role="alert" aria-live="polite"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="contactContact">Контакт <abbr title="обязательное поле">*</abbr></label>
+            <input type="text" id="contactContact" name="contact"
+                   placeholder="Телефон или email"
+                   autocomplete="on" required />
+            <span class="form-error" role="alert" aria-live="polite"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="contactMessage">Что нужно? <abbr title="обязательное поле">*</abbr></label>
+            <textarea id="contactMessage" name="message" rows="4"
+                      placeholder="Опишите задачу в паре предложений — разберёмся вместе."
+                      required></textarea>
+            <span class="form-error" role="alert" aria-live="polite"></span>
+          </div>
+
+          <button type="submit" class="btn btn--primary btn--full">
+            Отправить сообщение
+          </button>
+          <p class="form-success" id="formSuccess" hidden role="status">
+            Отлично, сообщение получено! Отвечу в течение нескольких часов.
+          </p>
+
+        </form>
+
+        <!-- Прямые контакты -->
+        <address class="contact__info">
+
+          <!-- пусто — мессенджер вынесен выше -->
+
+          <ul class="contact__details" role="list">
+            <li>
+              <a href="tel:+79771573476" class="contact__link">
+                <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18" aria-hidden="true">
+                  <path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/>
+                </svg>
+                +7 (977) 157-34-76
+              </a>
+            </li>
+            <li>
+              <a href="mailto:wwwsamo@yandex.ru" class="contact__link" target="_blank">
+                <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18" aria-hidden="true">
+                  <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/>
+                </svg>
+                wwwsamo@yandex.ru
+              </a>
+            </li>
+          </ul>
+
+        </address>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============================================================
+       FOOTER
+       ============================================================ -->
+  <footer class="footer reveal" role="contentinfo">
+    <div class="container footer__inner">
+
+      <div class="footer__brand">
+        <a href="#hero" class="nav__logo" aria-label="На главную">ДР</a>
+        <p>Сайты, боты, автоматизация и AI для малого бизнеса.</p>
+      </div>
+
+      <nav class="footer__nav" aria-label="Навигация в футере">
+        <ul role="list">
+          <li><a href="#about">Обо мне</a></li>
+          <li><a href="#services">Услуги</a></li>
+          <li><a href="#process">Процесс</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#contact">Контакт</a></li>
+        </ul>
+      </nav>
+
+      <address class="footer__contact">
+        <a href="tel:+79771573476" class="footer__link">+7 (977) 157-34-76</a>
+        <a href="mailto:wwwsamo@yandex.ru" class="footer__link" target="_blank" rel="noopener noreferrer">wwwsamo@yandex.ru</a>
+        <a href="https://t.me/samorabota" class="footer__link" target="_blank" rel="noopener noreferrer">Telegram</a>
+      </address>
+
+    </div>
+
+    <div class="footer__bottom container">
+      <p>&copy; <span id="year"></span> Дмитрий Рубцов.</p>
+      <p>Сделано руками, без фреймворков — как я люблю.</p>
+    </div>
+  </footer>
+
+  <button class="scroll-top" id="scrollTop" aria-label="Прокрутить наверх" hidden>
+    <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20" aria-hidden="true">
+      <path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"/>
+    </svg>
+  </button>
+
+  <script src="script.js"></script>
+</body>
+</html>
