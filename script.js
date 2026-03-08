@@ -299,7 +299,7 @@ if (contactForm) {
 
     const data = new FormData(contactForm);
 
-    fetch('/.netlify/functions/contact', {
+    fetch('/api/contact', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -502,4 +502,215 @@ document.querySelectorAll('a[href]').forEach(link => {
       card.style.removeProperty('--my');
     });
   });
+}());
+
+
+/* ============================================================
+   15. QUIZ ENGINE
+   ─────────────────────────────────────────────────────────
+   Универсальный контроллер — работает для любого .quiz-box.
+   Вызывается для inline-квиза (#quizInline) и popup (#quizPopupBox).
+   ============================================================ */
+(function initQuizEngine() {
+  'use strict';
+
+  const TOTAL_OPT_STEPS = 3;
+
+  function Quiz(wrapperEl) {
+    if (!wrapperEl) return;
+
+    const $ = sel => wrapperEl.querySelector(sel);
+
+    const fillEl   = $('.quiz-box__fill');
+    const counter  = $('.quiz-box__counter');
+    const footEl   = $('.quiz-box__foot');
+    const backBtn  = $('.quiz-back');
+    const headEl   = $('.quiz-box__head');
+    const doneEl   = $('.quiz-box__done');
+
+    let step = 1;
+    const answers = {};
+
+    function showStep(n) {
+      wrapperEl.querySelectorAll('.quiz-box__step').forEach(el => {
+        el.hidden = parseInt(el.dataset.step) !== n;
+      });
+      step = n;
+
+      // Прогресс-бар
+      const pct = n <= TOTAL_OPT_STEPS
+        ? Math.round((n - 1) / TOTAL_OPT_STEPS * 100)
+        : 90;
+      if (fillEl)  fillEl.style.width = pct + '%';
+      if (fillEl)  fillEl.parentElement.setAttribute('aria-valuenow', pct);
+
+      // Счётчик
+      if (counter) counter.textContent = n <= TOTAL_OPT_STEPS
+        ? `Шаг ${n} из ${TOTAL_OPT_STEPS}`
+        : 'Почти готово!';
+
+      // Кнопка «Назад»
+      if (backBtn) backBtn.hidden = n <= 1;
+    }
+
+    // Клик по варианту — сохранить + перейти дальше
+    wrapperEl.querySelectorAll('.quiz-opt').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const s = parseInt(btn.dataset.step);
+        answers[s] = btn.dataset.val;
+
+        // Визуальный выбор
+        wrapperEl.querySelectorAll(`.quiz-opt[data-step="${s}"]`)
+          .forEach(b => b.classList.remove('is-selected'));
+        btn.classList.add('is-selected');
+
+        // Динамически обновляем label контакта (шаг 3 → шаг 4)
+        if (s === TOTAL_OPT_STEPS) {
+          const lbl = $('[data-contact-label]');
+          if (lbl) {
+            const map = {
+              telegram: 'Telegram @username',
+              whatsapp: 'Номер WhatsApp',
+              email:    'Email адрес',
+            };
+            lbl.textContent = map[btn.dataset.val] || 'Telegram / WhatsApp / Email';
+          }
+        }
+
+        setTimeout(() => showStep(step + 1), 280);
+      });
+    });
+
+    // Кнопка «Назад»
+    if (backBtn) {
+      backBtn.addEventListener('click', () => {
+        if (step > 1) showStep(step - 1);
+      });
+    }
+
+    // Кнопка отправки (шаг 4)
+    const submitBtn = $('[data-quiz-submit]');
+    if (submitBtn) {
+      submitBtn.addEventListener('click', () => {
+        const nameInp = $('[data-quiz-name]');
+        const contInp = $('[data-quiz-contact]');
+        let valid = true;
+
+        [nameInp, contInp].forEach(inp => {
+          if (!inp) return;
+          const empty = !inp.value.trim();
+          inp.classList.toggle('invalid', empty);
+          const errEl = inp.parentElement.querySelector('.form-error');
+          if (errEl) errEl.textContent = empty ? 'Обязательное поле.' : '';
+          if (empty) valid = false;
+        });
+
+        if (!valid) return;
+
+        submitBtn.disabled    = true;
+        submitBtn.textContent = 'Отправляем…';
+
+        fetch('/api/contact', {
+          method:  'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            source:         'quiz',
+            service:        answers[1] || '',
+            timing:         answers[2] || '',
+            contact_method: answers[3] || '',
+            name:           nameInp?.value.trim() || '',
+            contact:        contInp?.value.trim() || '',
+          }),
+        })
+        .catch(() => {})           // silent fail — всё равно показываем экран успеха
+        .finally(() => showDone());
+      });
+    }
+
+    // Сброс ошибки при вводе
+    wrapperEl.addEventListener('input', e => {
+      if (e.target.matches('input')) {
+        e.target.classList.remove('invalid');
+        const errEl = e.target.parentElement.querySelector('.form-error');
+        if (errEl) errEl.textContent = '';
+      }
+    });
+
+    function showDone() {
+      wrapperEl.querySelectorAll('.quiz-box__step').forEach(s => { s.hidden = true; });
+      if (headEl) headEl.hidden = true;
+      if (footEl) footEl.hidden = true;
+      if (doneEl) {
+        doneEl.hidden = false;
+        if (fillEl) fillEl.style.width = '100%';
+      }
+    }
+
+    // Инициализация — показать первый шаг
+    showStep(1);
+  }
+
+  // ── Создаём оба экземпляра квиза ──────────────────────────
+  new Quiz(document.getElementById('quizInline'));
+  new Quiz(document.getElementById('quizPopupBox'));
+
+
+  // ── OVERLAY (Вариант 2) — открыть / закрыть ───────────────
+  const overlay      = document.getElementById('quizOverlay');
+  const overlayClose = document.getElementById('quizOverlayClose');
+
+  function openOverlay() {
+    if (!overlay) return;
+    overlay.hidden = false;
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => overlay.classList.add('is-open'));
+    });
+    document.body.style.overflow = 'hidden';
+    overlayClose?.focus();
+  }
+
+  function closeOverlay() {
+    if (!overlay) return;
+    overlay.classList.remove('is-open');
+    document.body.style.overflow = '';
+    overlay.addEventListener('transitionend', () => {
+      if (!overlay.classList.contains('is-open')) overlay.hidden = true;
+    }, { once: true });
+  }
+
+  if (overlayClose) overlayClose.addEventListener('click', closeOverlay);
+
+  if (overlay) {
+    overlay.addEventListener('click', e => {
+      if (e.target === overlay) closeOverlay();
+    });
+  }
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && overlay && !overlay.hidden) closeOverlay();
+  });
+
+  // Любой элемент с data-open-quiz открывает оверлей
+  document.querySelectorAll('[data-open-quiz]').forEach(el => {
+    el.addEventListener('click', openOverlay);
+  });
+
+
+  // ── FAB (Вариант 3) — открывает popup ─────────────────────
+  const fab         = document.getElementById('quizFab');
+  const quizSection = document.getElementById('quiz');
+
+  if (fab) {
+    fab.addEventListener('click', openOverlay);
+
+    // Скрываем FAB пока inline-квиз виден на экране
+    if (quizSection && 'IntersectionObserver' in window) {
+      const fabObserver = new IntersectionObserver(
+        ([entry]) => fab.classList.toggle('is-hidden', entry.isIntersecting),
+        { rootMargin: '200px 0px 0px 0px' }
+      );
+      fabObserver.observe(quizSection);
+    }
+  }
+
 }());

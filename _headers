@@ -3,9 +3,15 @@
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: camera=(), microphone=(), geolocation=()
-  Content-Security-Policy: default-src 'self'; img-src 'self' data: https:; style-src 'self' 'unsafe-inline'; script-src 'self'; connect-src 'self' /.netlify/functions/; base-uri 'self'; form-action 'self'; frame-ancestors 'none';
+  Content-Security-Policy: default-src 'self'; img-src 'self' data: https:; style-src 'self' 'unsafe-inline'; script-src 'self'; connect-src 'self' /api/; base-uri 'self'; form-action 'self'; frame-ancestors 'none';
 
 /images/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/og.jpg
   Cache-Control: public, max-age=31536000, immutable
 
 /*.css
